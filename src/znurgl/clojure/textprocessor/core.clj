@@ -30,8 +30,23 @@
     ) 
   )
 
+; Counting sentences. A sentence is ending with a dot and the next char would be 
+; a space or a line break and the next char should be a Capital letter.
+(defn count-sentences [filename]
+  (clojure.string/split 
+    (read-file filename) #"[\:|\.][ |\n]"
+    )
+  )
+
 ; START: main
 (defn -main [& args]
-  (norm-file "resources/test1.txt")
+  ; creating a normalized list of input text file
+  ;(norm-file "resources/test1.txt")  
+  ;
+  ; counting sentences of input text file
+  ; (count-sentences "resources/test1.txt")
+  (println "Count of sentences: "
+    (count (count-sentences "resources/test1.txt"))
+    )  
   )
 ; END: main
