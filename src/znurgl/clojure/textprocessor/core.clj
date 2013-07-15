@@ -10,7 +10,7 @@
   (clojure.string/replace str #"\.|\,|\:|\n|\(|\)|\"|\\" "")    
   )
 
-; creating a sorted list with disticn elements
+; creating a sorted list with distinct elements
 (defn cr-list [str]
   (distinct
 	  (sort
@@ -19,7 +19,7 @@
    )
   )
 
-; get a normalized map from file
+; get a normalized list from file
 (defn norm-file [filename]
   (cr-list
     (.toLowerCase
