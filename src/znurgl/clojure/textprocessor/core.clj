@@ -52,19 +52,23 @@
 
 ; START: main
 (defn -main [& args]
+  
+  ; example file for testing
+  (def filename "resources/test1.txt")
+  
   ; creating a normalized list of input text file
   (println "Normalized list: "
-    (norm-file "resources/test1.txt")
+    (norm-file filename)
     )  
   ;
   ; counting sentences of input text file
   ; (count-sentences "resources/test1.txt")
   (println "Count of sentences: "
-    (count-sentences "resources/test1.txt")
+    (count-sentences filename)
     )  
   
   (println "Words with -ing ending: "
-    (find-ing (read-file "resources/test1.txt"))
+    (find-ing (read-file filename))
     )
   )
 ; END: main
