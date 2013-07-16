@@ -1,5 +1,10 @@
 (ns znurgl.clojure.textprocessor.core)
 
+; create determiner lists
+(def quantifiers ["some" "any" "few" "little" "more" "much" 
+                  "many" "each" "every" "both" "all" "enough" 
+                  "half" "little" "whole" "less"])
+
 ; reading a file
 (defn read-file [filename]
   (slurp filename)
@@ -33,20 +38,33 @@
 ; Counting sentences. A sentence is ending with a dot and the next char would be 
 ; a space or a line break and the next char should be a Capital letter.
 (defn count-sentences [filename]
-  (clojure.string/split 
-    (read-file filename) #"[\:|\.][ |\n]"
+  (count
+    (clojure.string/split 
+      (read-file filename) #"[\:|\.][ |\n]"
+      )
     )
+  )
+
+; Find 'ing'-s
+(defn find-ing [list]
+  (re-seq #"\w+ing" list)
   )
 
 ; START: main
 (defn -main [& args]
   ; creating a normalized list of input text file
-  ;(norm-file "resources/test1.txt")  
+  (println "Normalized list: "
+    (norm-file "resources/test1.txt")
+    )  
   ;
   ; counting sentences of input text file
   ; (count-sentences "resources/test1.txt")
   (println "Count of sentences: "
-    (count (count-sentences "resources/test1.txt"))
+    (count-sentences "resources/test1.txt")
     )  
+  
+  (println "Words with -ing ending: "
+    (find-ing (read-file "resources/test1.txt"))
+    )
   )
 ; END: main
